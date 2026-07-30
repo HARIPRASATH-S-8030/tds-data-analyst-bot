@@ -4,12 +4,14 @@ import os
 from openai import OpenAI
 from telegram import Update
 from telegram.ext import ApplicationBuilder, MessageHandler, ContextTypes, filters
+from dotenv import load_dotenv
+import os
 
-# --- fill these in with your own values ---
-TELEGRAM_BOT_TOKEN = "8938091821:AAEYR95aqiTHSxdNWtR3bXfrP74auSXk0GU"
-AIPIPE_TOKEN = "eyJhbGciOiJIUzI1NiJ9.eyJlbWFpbCI6IjI0ZjEwMDEyODdAZHMuc3R1ZHkuaWl0bS5hYy5pbiIsImlhdCI6MTc4NTQyNDU4MCwiaXNzIjoiaHR0cHM6Ly9haXBpcGUub3JnIiwiYXVkIjoiYWlwaXBlLWFwaSIsImV4cCI6MTc4NjAyOTM4MH0.yiwthDL-jL0_kkn5FkBgpW6Usp7JJpFflaPDRVs0PJE"
-LOG_URL = "PASTE_YOUR_PUBLIC_LOG_URL_HERE"  # see Step 5 — where run.jsonl will be hosted
-# -------------------------------------------
+load_dotenv()
+
+TELEGRAM_BOT_TOKEN = os.getenv("TELEGRAM_BOT_TOKEN")
+AIPIPE_TOKEN = os.getenv("AIPIPE_TOKEN")
+LOG_URL = os.getenv("LOG_URL", "")
 
 client = OpenAI(base_url="https://aipipe.org/openai/v1", api_key=AIPIPE_TOKEN)
 LOG_FILE = "run.jsonl"
